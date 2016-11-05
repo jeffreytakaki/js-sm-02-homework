@@ -6,10 +6,7 @@ $(document).ready(function(){
 
 			// Question - why do i need to use anonymous function vs just calling self.getZip()?
 
-			$('.weather').on('click','#getWeather', function(event){
-				event.preventDefault();
-				self.getZip(this);
-			});
+			$('.weather').on('click','#getWeather', self.getZip );
 
 			$('form').on('keyup keypress', function(e){
 				var keyCode = e.keyCode || e.which;
@@ -20,7 +17,9 @@ $(document).ready(function(){
 			});
 		},
 		getZip: function(event) {
-			var zipcode = $(event).parent().find('#zipCode').val();
+
+			alert('hi');
+			var zipcode = $(this).parent().find('#zipCode').val();
 			if(zipcode.length == 5 && !isNaN(zipcode)) {
 				this.ajax({'zipcode':zipcode})
 			} else {
